@@ -15,14 +15,14 @@ const fetchData = async (search?: string) => {
 export default function Page() {
     const searchParams = useSearchParams()
 
-    const search = searchParams.get("result") as undefined | string
+    const search = searchParams.get("result") as string
     const pageNumber = searchParams.get("page")
 
     let page = 0
 
     if (!pageNumber) page = 0
     else page = parseInt(pageNumber)
-    const result = Object.values(name).filter((name) => name.includes(search)).slice(page, page+20)
+    const result = search ? Object.values(name).filter((name) => name.includes(search)).slice(page, page+20) : Object.values(name).slice(page, page+20)
 
     function copy() {
         const text = document.getElementById("input")!.innerText
