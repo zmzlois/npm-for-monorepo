@@ -8,6 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
+  DialogOverlay,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -20,8 +22,11 @@ import { argSchema } from "@/lib/form-schema";
 import { SelectField } from "./select.field";
 import { usePkgStore } from "@/lib/zustand-store";
 import { toast } from "sonner";
+import { useState } from "react";
 
 export function AddArgument() {
+
+    const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof argSchema>>({
     resolver: zodResolver(argSchema),
   });
@@ -35,10 +40,12 @@ export function AddArgument() {
     await updatePkg(content.name);
     await updateFlag(content.flag);
     await updateArg(content.label);
-    toast.success("Arguments updated successfully. 🎉 You can now close the diaglog.");
+    
+    setOpen(false);
+    toast.success("Arguments updated. 🎉 ");
   }
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Edit arguments</Button>
       </DialogTrigger>
