@@ -1,4 +1,4 @@
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "npm for monorepo",
@@ -15,4 +15,4 @@ export const siteConfig = {
     github: "https://github.com/zmzlois/pnpm-for-npm",
     docs: "https://ui.shadcn.com",
   },
-}
+};
