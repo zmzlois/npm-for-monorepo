@@ -1,3 +1,4 @@
+
 import "@/styles/globals.css"
 import { Metadata } from "next"
 
@@ -7,7 +8,8 @@ import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-
+import {Analytics} from "@vercel/analytics/react"
+import { ReactQueryProvider } from "@/components/react-query-provider"
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -29,17 +31,23 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+
+
 export default function RootLayout({ children }: RootLayoutProps) {
+
+
   return (
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
+  
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
             fontSans.variable
           )}
-        >
+        > 
+         <ReactQueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
@@ -47,6 +55,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </div>
             <TailwindIndicator />
           </ThemeProvider>
+          <Analytics />
+          </ReactQueryProvider>
         </body>
       </html>
     </>

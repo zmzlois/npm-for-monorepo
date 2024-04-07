@@ -78,4 +78,8 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  code {
+    @apply bg-muted text-base text-foreground sm:px-4 px-2 py-1 rounded-sm shadow-sm;
+  }
 }
