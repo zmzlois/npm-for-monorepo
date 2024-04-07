@@ -14,11 +14,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container mx-auto flex h-16 items-center sm:justify-between ">
         <MainNav items={siteConfig.mainNav} />
-       <SearchBar />
+       <SearchBar showDescription={false} onNav={false}/>
       
         <div className="flex-1 items-center justify-end space-x-4 flex">
            <AddArgument />
-           
+
           <nav className="flex items-center space-x-1">
             <Link
               href={siteConfig.links.github}

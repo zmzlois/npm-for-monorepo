@@ -20,7 +20,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { toast} from "sonner"
 
 
-export const SearchBar = () => {
+export const SearchBar = ({showDescription, onNav}: {showDescription: boolean, onNav: boolean}) => {
 
     const router = useRouter()
     const pathname = usePathname()
@@ -44,7 +44,7 @@ export const SearchBar = () => {
     return (
        
             <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className={cn("flex w-full space-x-8 sm:w-1/2", pathname.includes("search") && "px-10")}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={cn("flex w-full space-x-8 sm:w-1/2", !onNav && "px-10")}>
         <FormField
           control={form.control}
           name="content"
@@ -54,7 +54,7 @@ export const SearchBar = () => {
               <FormControl>
                 <Input placeholder="package name..." {...field} />
               </FormControl>
-             {!pathname.includes("search")&& <FormDescription>
+             {showDescription && <FormDescription>
                 Palms are sore with monorepos ? 
               </FormDescription>}
               <FormMessage />
