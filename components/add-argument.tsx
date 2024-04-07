@@ -35,13 +35,13 @@ export function AddArgument() {
             Make changes to your arguments.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4 items-start">
-            <div className="grid grid-cols-5 items-center ">
-            <Label htmlFor="name" className="text-start col-span-2">
+        <div className="grid gap-4 py-4 items-center">
+         
+            <Label htmlFor="name" className="text-start col-span-1">
              Package manager
             </Label>
-            <Select>
-      <SelectTrigger className="w-[180px] col-span-3">
+            <Select >
+      <SelectTrigger className="items-center border col-span-3">
         <SelectValue placeholder="pnpm" defaultValue={"pnpm"} />
       </SelectTrigger>
       <SelectContent>
@@ -52,16 +52,16 @@ export function AddArgument() {
         </SelectGroup>
       </SelectContent>
     </Select>
-                </div>
+               
           <div className="grid grid-cols-4 items-center gap-4">
             
-            <Label htmlFor="name" className="text-right">
+            <Label htmlFor="name" className="text-start col-span-1">
              Flag
             </Label>
             <Input id="name" value="--filter" placeholder="--filter" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="text-start col-span-1">
               Label
             </Label>
             <Input id="username" value="app" placeholder="app" className="col-span-3" />

@@ -76,7 +76,7 @@ export default function Page() {
                {item}
                 </a>
                 <code id="code" onClick={() => copy} className="flex gap-4 text-center content-center items-center text-sm">
-                    <span id="input">pnpm add {item}</span>
+                    <span id="input">pnpm add {item} --filter web</span>
                 <Button onClick={copy} className="ml-2" variant={"outline"}>Copy</Button>
                 </code>
             </div>)}
