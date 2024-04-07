@@ -1,5 +1,5 @@
-"use client"
-import { Button } from "@/components/ui/button"
+"use client";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,69 +8,80 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog";
 import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
-   
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { InputField } from "./input.field";
+import z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { argSchema } from "@/lib/form-schema";
+import { SelectField } from "./select.field";
+import { usePkgStore } from "@/lib/zustand-store";
+import { toast } from "sonner";
 
 export function AddArgument() {
+  const form = useForm<z.infer<typeof argSchema>>({
+    resolver: zodResolver(argSchema),
+  });
+
+  const updatePkg = usePkgStore((state: any) => state.setPackage);
+
+  const updateFlag = usePkgStore((state: any) => state.setFlag);
+  const updateArg = usePkgStore((state: any) => state.setArg);
+  async function onSubmit(values: any) {
+    const content = form.getValues();
+    await updatePkg(content.name);
+    await updateFlag(content.flag);
+    await updateArg(content.label);
+    toast.success("Arguments updated successfully. 🎉 You can now close the diaglog.");
+  }
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">Edit arguments</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit arguments</DialogTitle>
-          <DialogDescription>
-            Make changes to your arguments.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4 items-center">
-         
-            <Label htmlFor="name" className="text-start col-span-1">
-             Package manager
-            </Label>
-            <Select >
-      <SelectTrigger className="items-center border col-span-3">
-        <SelectValue placeholder="pnpm" defaultValue={"pnpm"} />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectItem value="pnpm">pnpm</SelectItem>
-          <SelectItem value="npm">npm</SelectItem>
-          <SelectItem value="yarn">yarn</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-               
-          <div className="grid grid-cols-4 items-center gap-4">
-            
-            <Label htmlFor="name" className="text-start col-span-1">
-             Flag
-            </Label>
-            <Input id="name" value="--filter" placeholder="--filter" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-start col-span-1">
-              Label
-            </Label>
-            <Input id="username" value="app" placeholder="app" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <DialogHeader>
+              <DialogTitle>Edit arguments</DialogTitle>
+              <DialogDescription>
+                Make changes to your arguments.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid items-center gap-4 py-4">
+              <SelectField
+                control={form.control}
+                label="Package manager"
+                name="name"
+              />
+              <div className="grid grid-cols-4 items-center gap-4">
+                <InputField control={form.control} label="Flag" name="flag" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <InputField
+                  control={form.control}
+                  label="Argument"
+                  name="label"
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="submit">Save changes</Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
