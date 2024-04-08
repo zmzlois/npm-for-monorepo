@@ -5,10 +5,14 @@ import { useSearchParams } from "next/navigation";
 import { usePkgStore } from "@/lib/zustand-store";
 import { ClickToCopy } from "@/components/fields/click-to-copy";
 import { Pagination } from "@/components/fields/pagination";
+import { LoadingState } from "@/components/loading";
+import { TransitionRoot, TransitionItem } from "@/lib/list-animate";
+
+
 export default function Page() {
 
-    const [isOpen, setIsOpen] = useState(false); 
      const [result, setResult] = useState<string[]>([]);
+    
     
     const searchParams = useSearchParams();
  
@@ -35,26 +39,39 @@ export default function Page() {
          queryResult(search, pageNumber)
              .then((res) => setResult(res))
              .catch((error) => console.log(error));
-        
-     }, [search, pageNumber])
+       
+     }, [search, pageNumber])  
+     
+     const isOpen = result.length > 0;
+
+     if (!isOpen) return (<LoadingState />)
+
     return (
      <div className="flex flex-col gap-4">
-        <ul className="container mx-auto flex flex-col items-start px-20 py-5">
+   
+        <ul className="container mx-auto flex flex-col items-start px-20 py-5" >     <TransitionRoot isOpen={isOpen}>
            {result.length > 0 && result.slice(pageNumber, pageNumber+20).map((item, index) => (
+            <TransitionItem
+              key={index}
+              isOpen={isOpen}
+              >
             <li
               key={index}
+              id={`item-${index}`}
               className="flex w-full content-center items-center justify-between border-b py-8 "
             >
               <a
                 href={`https://www.npmjs.com/package/${item}`}
-                className=" transition-all duration-300 hover:underline hover:underline-offset-4"
+                className=" transition-transform duration-300 hover:underline hover:underline-offset-4"
               >
                 {item}
               </a>
              <ClickToCopy props={{packageName: args.name, command: args.command, item: item, flag: args.flag, arg: args.arg}} />
-            </li>
-          ))}
+            </li></TransitionItem>
+          ))}  
+          </TransitionRoot>
         </ul>
+      
         {result.length > 20 && <Pagination page={pageNumber} setPage={setPageNumber} totalPage={result.length /20} />}
     </div>
     );

@@ -7,12 +7,14 @@ export default async function queryResult(search: string, pageNumber?: number) {
 
     let page = 0;
 
+    const query = search.replaceAll("\%20", " ")
+
 
     if (pageNumber) page = pageNumber;
 
     result = search
       ? await Object.values(name)
-          .filter((name) => name.includes(search) && name.length < 40)
+          .filter((name) => name.includes(query) && name.length < 40)
       : await Object.values(name);
   
    
