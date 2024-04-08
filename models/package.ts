@@ -1,3 +1,5 @@
+// unused for now. But this class should either be the database schema or expose to puppeteer
+
 import type { Page } from "puppeteer";
 
 export class Package {

@@ -1,3 +1,4 @@
+// unused for now until find out how to fetch data from npm effectively
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 export async function GET(req: Request) {
