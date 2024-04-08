@@ -58,11 +58,7 @@ export const SearchBar = ({
               <FormControl>
                 <Input placeholder="package name..." {...field} />
               </FormControl>
-              {showDescription && (
-                <FormDescription>
-                  Palms are sore with monorepos ?
-                </FormDescription>
-              )}
+              
               <FormMessage />
             </FormItem>
           )}
