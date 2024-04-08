@@ -11,9 +11,7 @@ import {
   DialogClose,
   DialogOverlay,
 } from "@/components/ui/dialog";
-import {
-  Form,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { InputField } from "./input.field";
 import z from "zod";
 import { useForm } from "react-hook-form";
@@ -25,8 +23,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 
 export function AddArgument() {
-
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const form = useForm<z.infer<typeof argSchema>>({
     resolver: zodResolver(argSchema),
   });
@@ -40,7 +37,7 @@ export function AddArgument() {
     await updatePkg(content.name);
     await updateFlag(content.flag);
     await updateArg(content.label);
-    
+
     setOpen(false);
     toast.success("Arguments updated. 🎉 ");
   }

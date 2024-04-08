@@ -27,20 +27,19 @@ export const SearchBar = ({
   onNav: boolean;
 }) => {
   const router = useRouter();
- 
+
   const searchParams = useSearchParams();
 
   const search = searchParams.get("result");
   const form = useForm<z.infer<typeof searchSchema>>({
     resolver: zodResolver(searchSchema),
     defaultValues: {
-      content: search ? search :"",
+      content: search ? search : "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof searchSchema>) {
     const content = form.getValues("content")?.replaceAll(" ", "%20");
-
 
     router.push(`/search?result=${content}&page=0`);
   }
@@ -58,7 +57,7 @@ export const SearchBar = ({
               <FormControl>
                 <Input placeholder="package name..." {...field} />
               </FormControl>
-              
+
               <FormMessage />
             </FormItem>
           )}
