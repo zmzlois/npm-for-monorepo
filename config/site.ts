@@ -3,7 +3,11 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "npm for monorepo",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "Find any npm packages with custom commands.",
+  author: {
+    name: "Lois Zhao",
+    url: "https://x.com/zmzlois",
+  },
   mainNav: [
     {
       title: "Home",
