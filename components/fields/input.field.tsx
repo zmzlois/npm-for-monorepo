@@ -1,4 +1,4 @@
-import { Label } from "./ui/label";
+import { Label } from "../ui/label";
 import {
   Form,
   FormControl,
@@ -13,7 +13,7 @@ import z from "zod";
 import { useForm, UseFormReturn } from "react-hook-form";
 import type { ControllerProps } from "react-hook-form";
 import type { FieldPath, FieldValues, Path } from "react-hook-form/dist/types";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 
 export interface InputFieldProps<
   TFieldValues extends FieldValues = FieldValues,

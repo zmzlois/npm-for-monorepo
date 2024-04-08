@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 interface Props {
     packageName: string;
