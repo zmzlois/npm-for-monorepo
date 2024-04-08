@@ -8,8 +8,8 @@ import { SiteHeader } from "@/components/site-header";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
-import { ReactQueryProvider } from "@/components/react-query-provider";
 import { Toaster } from "sonner";
+import { SiteFooter } from "@/components/site-footer";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -47,6 +47,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className=" flex h-screen flex-col">
               <SiteHeader />
               <div className="flex-1">{children}</div>
+              <SiteFooter />
             </div>
           </ThemeProvider>
           <TailwindIndicator />
