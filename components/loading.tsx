@@ -1,16 +1,9 @@
-"use client"
+
 import { Skeleton } from "@/components/ui/skeleton"
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+
 const array = 20
 export function LoadingState() {
-    const router = useRouter()
-
-    useEffect(() => {
-        setTimeout(() => {
-            router.push("/not-found")
-        }, 5000)
-    })
+  
   return (
     <>
    {Array.from({ length: array }).map((_, index) => (

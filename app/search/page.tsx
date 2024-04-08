@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import queryResult from "@/lib/query-npm";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { usePkgStore } from "@/lib/zustand-store";
 import { ClickToCopy } from "@/components/fields/click-to-copy";
 import { Pagination } from "@/components/fields/pagination";
@@ -11,8 +11,9 @@ import { TransitionRoot, TransitionItem } from "@/lib/list-animate";
 
 export default function Page() {
 
+   
      const [result, setResult] = useState<string[]>([]);
-    
+    const router = useRouter();
     
     const searchParams = useSearchParams();
  
@@ -39,12 +40,14 @@ export default function Page() {
          queryResult(search, pageNumber)
              .then((res) => setResult(res))
              .catch((error) => console.log(error));
-       
+
      }, [search, pageNumber])  
      
+  
      const isOpen = result.length > 0;
 
-     if (!isOpen) return (<LoadingState />)
+
+     if (!isOpen) return <LoadingState />;
 
     return (
      <div className="flex flex-col gap-4">
