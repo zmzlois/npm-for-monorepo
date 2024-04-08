@@ -1,6 +1,9 @@
 # Command line tool for monorepo 
 
-My hands were sore so I made this
+## This site is updated and reployed everyday thanks to [Vercel deploy hook](https://vercel.com/docs/deployments/deploy-hooks)
+
+
+My hands were sore too sore typing commands for monorepos so I made this to help me copy paste npm commands for monorepos
 ![landing](/public/landing.png)
 
 ## Search packages on npm registry
