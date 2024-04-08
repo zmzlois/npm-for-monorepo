@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { buttonVariants } from "@/components/ui/button";
-import { SearchBar } from "@/components/search-bar";
+import { SearchBar } from "@/components/fields/search-bar";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function IndexPage() {

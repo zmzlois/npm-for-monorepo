@@ -5,8 +5,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { SearchBar } from "./search-bar";
-import { AddArgument } from "./add-argument";
+import { SearchBar } from "./fields/search-bar";
+import { AddArgument } from "./fields/argument.field";
 
 export function SiteHeader() {
   return (
