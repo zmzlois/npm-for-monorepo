@@ -2,6 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "npm for monorepo",
+  url: "https://monorepo.loiszhao.com",
   description:
     "Find any npm packages with custom commands.",
   author: {
@@ -15,8 +16,8 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/zmzlois",
-    github: "https://github.com/zmzlois/pnpm-for-npm",
+    twitter: "https://x.com/zmzlois",
+    github: "https://github.com/zmzlois/npm-for-monorepo",
     docs: "https://ui.shadcn.com",
   },
 };
